@@ -93,7 +93,10 @@ class ImageManipulator
         $manipulation = $this->getVariantDefinition($variantName);
 
         $outputFormat = $this->determineOutputFormat($manipulation, $media);
-        $image = $this->imageManager->make($media->stream());
+        //Commented due to a bug with Azure | Not tested with other storages
+       // $image = $this->imageManager->make($media->stream());
+          
+        $image = $this->imageManager->make($media->getUrl());
 
         $callback = $manipulation->getCallback();
         $callback($image);
